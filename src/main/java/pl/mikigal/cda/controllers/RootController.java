@@ -23,6 +23,11 @@ public class RootController {
         return "index";
     }
 
+    @GetMapping("/video/{id}")
+    public String video(@PathVariable String id) {
+        return "redirect:/" + id;
+    }
+
     @GetMapping("/{id}")
     public String video(Model model, @PathVariable String id) {
         model.addAttribute("id", id);
@@ -30,6 +35,6 @@ public class RootController {
         model.addAttribute("p480", ripperService.rip(id, Quality.P480));
         model.addAttribute("p720", ripperService.rip(id, Quality.P720));
         model.addAttribute("p1080", ripperService.rip(id, Quality.P1080));
-        return "index";
+        return "raw";
     }
 }
