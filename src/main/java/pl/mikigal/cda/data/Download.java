@@ -21,5 +21,14 @@ public class Download {
     private String date;
     private String ip;
     private String video;
-    private String quality;
+
+    public Download() {
+
+    }
+
+    public Download(String date, String ip, String video) {
+        this.date = date;
+        this.ip = ip;
+        this.video = video;
+    }
 }

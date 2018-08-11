@@ -3,12 +3,8 @@ package pl.mikigal.cda.services;
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.javascript.JavaScriptErrorListener;
 import org.springframework.stereotype.Service;
 import pl.mikigal.cda.data.Quality;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 @Service
 public class RipperService {

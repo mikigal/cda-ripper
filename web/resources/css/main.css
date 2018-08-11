@@ -60,16 +60,15 @@ body {
 }
 
 #warning {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 20px;
     color: #FF3D00;
 }
 
-#info {
+#error {
     font-size: 25px;
     margin-top: 20px;
     margin-bottom: 10px;
-    display: none;
 }
 
 .url {
@@ -96,11 +95,11 @@ body {
     font-size: 25px;
 }
 
-.quality-avaible {
+.quality-available {
     background-color: #00E676;
 }
 
-.quality-unavaible {
+.quality-unavailable {
     background-color: #F4511E;
     width: 200px;
 }
