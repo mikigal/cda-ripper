@@ -6,3 +6,7 @@ Implemented download logs to MySQL database with Hibernate
 - Implement Spring Boot instead of XML configuration
 
 Version: RELEASE 1.0
+
+![index](https://i.imgur.com/n9fWdbt.png)
+<br>
+![downloading](https://i.imgur.com/VQOA2VB.png)
