@@ -14,7 +14,7 @@
     <p id="subtitle">Author: mikigal</p>
 
     <input id="url-input" type="text" placeholder="Link do video"/> <br>
-    <button id="download-input" onclick="loading()"/>POBIERZ</button>
+    <button id="download-input" onclick="loading()">POBIERZ</button>
 
     <c:if test="${param.error == '1'}">
         <p id="error">Podany URL jest niepoprawny!</p>

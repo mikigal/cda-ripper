@@ -1,13 +1,8 @@
 package pl.mikigal.cda.data;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
-
-@Getter
-@Setter
 
 @Repository
 @Entity
@@ -30,5 +25,21 @@ public class Download {
         this.date = date;
         this.ip = ip;
         this.video = video;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public String getVideo() {
+        return video;
     }
 }

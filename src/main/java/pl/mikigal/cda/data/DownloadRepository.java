@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DownloadRepository extends CrudRepository<Download, Integer> {
-    public Download findById(int id);
+    Download findById(int id);
 }

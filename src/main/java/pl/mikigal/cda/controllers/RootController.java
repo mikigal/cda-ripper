@@ -40,8 +40,6 @@ public class RootController {
     @GetMapping("/{url:.*}")
     public String video(Model model, HttpServletRequest request, @PathVariable String url) {
 
-        System.out.println(url);
-
         if(!url.contains("cda.pl$2F")) {
             return "redirect:/?error=1";
         }
