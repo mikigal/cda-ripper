@@ -1,12 +1,14 @@
 package pl.mikigal.cda.services;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.PluginConfiguration;
-import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.javascript.JavaScriptErrorListener;
 import org.springframework.stereotype.Service;
 import pl.mikigal.cda.data.Quality;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @Service
 public class RipperService {
@@ -22,9 +24,8 @@ public class RipperService {
         bv.getPlugins().add(flash);
 
         webClient = new WebClient(bv);
+        webClient.setIncorrectnessListener((s, o) -> {});
         webClient.getOptions().setThrowExceptionOnScriptError(false);
-        webClient.waitForBackgroundJavaScript(5000);
-        webClient.waitForBackgroundJavaScriptStartingBefore(5000);
         webClient.getOptions().setJavaScriptEnabled(true);
         webClient.getOptions().setCssEnabled(false);
     }
