@@ -1,14 +1,13 @@
-package pl.mikigal.cda.controllers;
+package pl.mikigal.cda.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import pl.mikigal.cda.data.Download;
-import pl.mikigal.cda.data.DownloadRepository;
-import pl.mikigal.cda.data.Quality;
-import pl.mikigal.cda.services.RipperService;
+import pl.mikigal.cda.entity.DownloadEntity;
+import pl.mikigal.cda.repository.DownloadRepository;
+import pl.mikigal.cda.service.RipperService;
+import pl.mikigal.cda.type.QualityType;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -21,7 +20,6 @@ public class RootController {
     private final RipperService ripperService;
     private final DownloadRepository downloadRepo;
 
-    @Autowired
     public RootController(RipperService ripperService, DownloadRepository downloadRepo) {
         this.ripperService = ripperService;
         this.downloadRepo = downloadRepo;
@@ -54,12 +52,12 @@ public class RootController {
         }
 
         model.addAttribute("id", id);
-        model.addAttribute("p360", ripperService.rip(id, Quality.P360));
-        model.addAttribute("p480", ripperService.rip(id, Quality.P480));
-        model.addAttribute("p720", ripperService.rip(id, Quality.P720));
-        model.addAttribute("p1080", ripperService.rip(id, Quality.P1080));
+        model.addAttribute("p360", ripperService.rip(id, QualityType.P360));
+        model.addAttribute("p480", ripperService.rip(id, QualityType.P480));
+        model.addAttribute("p720", ripperService.rip(id, QualityType.P720));
+        model.addAttribute("p1080", ripperService.rip(id, QualityType.P1080));
 
-        downloadRepo.save(new Download(sdf.format(new Date()), this.fetchIp(request), id));
+        downloadRepo.save(new DownloadEntity(sdf.format(new Date()), this.fetchIp(request), id));
 
         return "download";
     }

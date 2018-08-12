@@ -1,6 +1,7 @@
-package pl.mikigal.cda.data;
+package pl.mikigal.cda.type;
 
-public enum Quality {
+public enum QualityType {
+
     P360("360p"),
     P480("480p"),
     P720("720p"),
@@ -8,11 +9,12 @@ public enum Quality {
 
     private final String name;
 
-    Quality(String name){
+    QualityType(String name){
         this.name = name;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
+
 }
