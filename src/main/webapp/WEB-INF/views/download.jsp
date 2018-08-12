@@ -7,7 +7,7 @@
     <title>cda-ripper @ mikigal</title>
     <meta http-equiv="content-type" content="charset=utf8"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400">
-    <link rel="stylesheet" href="<c:url value="/resources/css/main.css" />">
+    <link rel="stylesheet" href="<c:url value="../../static/css/main.css" />">
 </head>
 <body>
 <div id="container">
@@ -17,50 +17,50 @@
     </p>
     <p id="warning" style="font-size: 25px;">Aby pobrać wideo wybierz jakość, następnie 'Zapisz wideo jako'</p>
 
-    <div class="quality-container">
-        <p class="quality-title">360p</p>
+    <div class="qualityType-container">
+        <p class="qualityType-title">360p</p>
         <c:choose>
             <c:when test="${p360 != null && !fn:startsWith(p360, 'https://.cda.pl/')}">
-                <button class="quality-button quality-available" onclick="redirect('${p360}')">POBIERZ</button>
+                <button class="qualityType-button qualityType-available" onclick="redirect('${p360}')">POBIERZ</button>
             </c:when>
             <c:otherwise>
-                <button class="quality-button quality-unavailable">NIEDOSTĘPNE</button>
+                <button class="qualityType-button qualityType-unavailable">NIEDOSTĘPNE</button>
             </c:otherwise>
         </c:choose>
     </div>
 
-    <div class="quality-container">
-        <p class="quality-title">480p</p>
+    <div class="qualityType-container">
+        <p class="qualityType-title">480p</p>
         <c:choose>
             <c:when test="${p480 != null && !fn:startsWith(p480, 'https://.cda.pl/')}">
-                <button class="quality-button quality-available" onclick="redirect('${p480}')">POBIERZ</button>
+                <button class="qualityType-button qualityType-available" onclick="redirect('${p480}')">POBIERZ</button>
             </c:when>
             <c:otherwise>
-                <button class="quality-button quality-unavailable">NIEDOSTĘPNE</button>
+                <button class="qualityType-button qualityType-unavailable">NIEDOSTĘPNE</button>
             </c:otherwise>
         </c:choose>
     </div>
 
-    <div class="quality-container">
-        <p class="quality-title">720p</p>
+    <div class="qualityType-container">
+        <p class="qualityType-title">720p</p>
         <c:choose>
             <c:when test="${p720 != null && !fn:startsWith(p720, 'https://.cda.pl/')}">
-                <button class="quality-button quality-available" onclick="redirect('${p720}')">POBIERZ</button>
+                <button class="qualityType-button qualityType-available" onclick="redirect('${p720}')">POBIERZ</button>
             </c:when>
             <c:otherwise>
-                <button class="quality-button quality-unavailable">NIEDOSTĘPNE</button>
+                <button class="qualityType-button qualityType-unavailable">NIEDOSTĘPNE</button>
             </c:otherwise>
         </c:choose>
     </div>
 
-    <div class="quality-container">
-        <p class="quality-title">1080p</p>
+    <div class="qualityType-container">
+        <p class="qualityType-title">1080p</p>
         <c:choose>
             <c:when test="${p1080 != null && !fn:startsWith(p1080, 'https://.cda.pl/')}">
-                <button class="quality-button quality-available" onclick="redirect('${p1080}')">POBIERZ</button>
+                <button class="qualityType-button qualityType-available" onclick="redirect('${p1080}')">POBIERZ</button>
             </c:when>
             <c:otherwise>
-                <button class="quality-button quality-unavailable">NIEDOSTĘPNE</button>
+                <button class="qualityType-button qualityType-unavailable">NIEDOSTĘPNE</button>
             </c:otherwise>
         </c:choose>
     </div>

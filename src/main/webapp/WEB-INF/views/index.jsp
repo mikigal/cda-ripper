@@ -6,7 +6,7 @@
     <title>cda-ripper @ mikigal</title>
     <meta http-equiv="content-type" content="charset=utf8" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400">
-    <link rel="stylesheet" href="<c:url value="/resources/css/main.css" />">
+    <link rel="stylesheet" href="<c:url value="../../static/css/main.css" />">
 </head>
 <body>
 <div id="container">

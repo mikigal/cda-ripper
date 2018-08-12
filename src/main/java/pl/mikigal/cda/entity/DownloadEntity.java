@@ -1,45 +1,38 @@
-package pl.mikigal.cda.data;
-
-import org.springframework.stereotype.Repository;
+package pl.mikigal.cda.entity;
 
 import javax.persistence.*;
 
-@Repository
 @Entity
 @Table(name = "downloads")
-public class Download {
+public class DownloadEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String date;
     private String ip;
     private String video;
 
-    public Download() {
-
-    }
-
-    public Download(String date, String ip, String video) {
+    public DownloadEntity(String date, String ip, String video) {
         this.date = date;
         this.ip = ip;
         this.video = video;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getDate() {
-        return date;
+        return this.date;
     }
 
     public String getIp() {
-        return ip;
+        return this.ip;
     }
 
     public String getVideo() {
-        return video;
+        return this.video;
     }
+
 }
