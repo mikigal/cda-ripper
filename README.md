@@ -4,6 +4,7 @@ Implemented download logs to MySQL database with Hibernate
 
 # TODO
 - Global download queue
+- Mute HtmlUnit's logs
 - [x] ~~Delay per IP~~
 - [x] ~~Implement Spring Boot instead of XML configuration~~ thanks to [@bmstefanski](https://github.com/bmstefanski/)
 
