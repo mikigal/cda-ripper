@@ -13,6 +13,7 @@ import pl.mikigal.cda.type.QualityType;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -31,12 +32,19 @@ public class RootController {
     }
 
     @GetMapping("/")
-    public String root(HttpServletRequest request) {
+    public String root() {
         return "index";
     }
 
-    @GetMapping("/{url:.*}")
-    public String video(Model model, HttpServletRequest request, @PathVariable String url) {
+    @GetMapping("/{encodedUrl:.*}")
+    public String video(Model model, HttpServletRequest request, @PathVariable String encodedUrl) {
+
+        String url = null;
+        try {
+            url = new String(Base64.getDecoder().decode(encodedUrl));
+        } catch (Exception e) {
+            return "redirect:/?error=1";
+        }
 
         if(!url.contains("cda.pl$2F")) {
             return "redirect:/?error=1";
