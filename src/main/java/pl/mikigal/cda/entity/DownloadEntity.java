@@ -13,6 +13,10 @@ public class DownloadEntity {
     private String ip;
     private String video;
 
+    public DownloadEntity() {
+        // Contructor for JPA
+    }
+
     public DownloadEntity(String date, String ip, String video) {
         this.date = date;
         this.ip = ip;

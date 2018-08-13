@@ -16,9 +16,17 @@
     <input id="url-input" type="text" placeholder="Link do video"/> <br>
     <button id="download-input" onclick="loading()">POBIERZ</button>
 
-    <c:if test="${param.error == '1'}">
-        <p id="error">Podany URL jest niepoprawny!</p>
-    </c:if>
+    <c:choose>
+        <c:when test="${param.error == '1'}">
+            <p id="error">Podany URL jest niepoprawny!</p>
+        </c:when>
+        <c:when test="${param.error == '2'}">
+            <p id="error">Musisz poczekać przed pobraniem następnego filmu!</p>
+        </c:when>
+        <c:otherwise>
+            <p id="error">Wystąpił nieokreślony błąd!</p>
+        </c:otherwise>
+    </c:choose>
 
     <p id="warning">Przechwytywanie linków do wszystkich dostępnych jakości wideo trwa około 15 sekund!</p>
 </div>

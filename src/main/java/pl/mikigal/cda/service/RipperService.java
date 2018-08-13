@@ -15,41 +15,42 @@ public class RipperService {
     private final WebClient webClient;
 
     public RipperService() {
-      PluginConfiguration flash = new PluginConfiguration("Shockwave Flash", "Shockwave Flash 11.4 r402", "11.4 r402", "NPSWF32_11_4_402_287.dll");
-      flash.getMimeTypes().add(new PluginConfiguration.MimeType("application/x-shockwave-flash", "Adobe Flash movie", "swf"));
+        PluginConfiguration flash = new PluginConfiguration("Shockwave Flash", "Shockwave Flash 11.4 r402", "11.4 r402", "NPSWF32_11_4_402_287.dll");
+        flash.getMimeTypes().add(new PluginConfiguration.MimeType("application/x-shockwave-flash", "Adobe Flash movie", "swf"));
 
-      BrowserVersion bv = BrowserVersion.CHROME;
-      bv.getPlugins().add(flash);
+        BrowserVersion bv = BrowserVersion.CHROME;
+        bv.getPlugins().add(flash);
 
-      webClient = new WebClient(bv);
-      webClient.setIncorrectnessListener((s, o) -> {});
-      webClient.getOptions().setThrowExceptionOnScriptError(false);
-      webClient.getOptions().setJavaScriptEnabled(true);
-      webClient.getOptions().setCssEnabled(false);
+        webClient = new WebClient(bv);
+        webClient.setIncorrectnessListener((s, o) -> {
+        });
+        webClient.getOptions().setThrowExceptionOnScriptError(false);
+        webClient.getOptions().setJavaScriptEnabled(true);
+        webClient.getOptions().setCssEnabled(false);
     }
 
     public String rip(String id, QualityType qualityType) {
-      try {
-        HtmlPage page = webClient.getPage(CDA_URL + id + "?wersja=" + qualityType.getName());
+        try {
+            HtmlPage page = webClient.getPage(CDA_URL + id + "?wersja=" + qualityType.getName());
 
-        String url = getPlayerObject(page, id)
-            .getLastElementChild()
-            .getAttribute("value")
-            .split("file=")[1]
-            .split("&")[0]
-            .replace("%3A", ":")
-            .replace("%2F", "/");
+            String url = getPlayerObject(page, id)
+                    .getLastElementChild()
+                    .getAttribute("value")
+                    .split("file=")[1]
+                    .split("&")[0]
+                    .replace("%3A", ":")
+                    .replace("%2F", "/");
 
-        return url;
-      } catch (Exception e) {
-        e.printStackTrace();
-        return null;
-      }
+            return url;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private DomElement getPlayerObject(HtmlPage page, String id) {
-      DomElement base = page.getElementById("mediaplayer" + id);
-      return base == null ? page.getElementById("mediaplayer" + id.substring(0, id.length() - 2)) : base;
+        DomElement base = page.getElementById("mediaplayer" + id);
+        return base == null ? page.getElementById("mediaplayer" + id.substring(0, id.length() - 2)) : base;
     }
 
 }
