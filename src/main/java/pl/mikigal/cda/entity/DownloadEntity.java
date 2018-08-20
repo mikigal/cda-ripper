@@ -14,7 +14,7 @@ public class DownloadEntity {
     private String video;
 
     public DownloadEntity() {
-        // Contructor for JPA
+        //Constructor for JPA
     }
 
     public DownloadEntity(String date, String ip, String video) {
