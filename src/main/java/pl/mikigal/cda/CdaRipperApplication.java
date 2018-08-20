@@ -10,10 +10,11 @@ public class CdaRipperApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-      return builder.sources(CdaRipperApplication.class);
+        return builder.sources(CdaRipperApplication.class);
     }
 
     public static void main(String[] args) {
-      SpringApplication.run(CdaRipperApplication.class, args);
+        SpringApplication.run(CdaRipperApplication.class, args);
     }
+
 }
