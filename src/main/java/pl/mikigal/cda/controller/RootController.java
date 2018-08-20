@@ -1,26 +1,29 @@
 package pl.mikigal.cda.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Base64;
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import pl.mikigal.cda.entity.DownloadEntity;
 import pl.mikigal.cda.properties.Properties;
 import pl.mikigal.cda.repository.DownloadRepository;
 import pl.mikigal.cda.service.RipperService;
 import pl.mikigal.cda.type.QualityType;
 
-import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
-
 @Controller
 public class RootController {
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private static final SimpleDateFormat SDF = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private static final Base64.Decoder DECODER = Base64.getDecoder();
+
     private final Properties properties;
     private final RipperService ripperService;
     private final DownloadRepository downloadRepo;
@@ -38,19 +41,19 @@ public class RootController {
 
     @GetMapping("/{encodedUrl:.*}")
     public String video(Model model, HttpServletRequest request, @PathVariable String encodedUrl) {
+        String url;
 
-        String url = null;
         try {
-            url = new String(Base64.getDecoder().decode(encodedUrl));
+            url = new String(DECODER.decode(encodedUrl));
         } catch (Exception e) {
             return "redirect:/?error=1";
         }
 
-        if(!url.contains("cda.pl$2F")) {
+        if (!url.contains("cda.pl$2F")) {
             return "redirect:/?error=1";
         }
 
-        String id = null;
+        String id;
 
         try {
             String[] ss = url.split("\\$2F");
@@ -62,7 +65,7 @@ public class RootController {
         DownloadEntity last = downloadRepo.findFirstByIpOrderByDateDesc(fetchIp(request));
 
         try {
-            if(last != null && sdf.parse(last.getDate()).getTime() + (properties.getDelayTime() * 1000) > new Date().getTime()) {
+            if (last != null && SDF.parse(last.getDate()).getTime() + (properties.getDelayTime() * 1000) > new Date().getTime()) {
                 return "redirect:/?error=2";
             }
         } catch (ParseException e) {
@@ -70,7 +73,7 @@ public class RootController {
             return "redirect:/?error=-1";
         }
 
-        downloadRepo.save(new DownloadEntity(sdf.format(new Date()), this.fetchIp(request), id));
+        downloadRepo.save(new DownloadEntity(SDF.format(new Date()), this.fetchIp(request), id));
 
         model.addAttribute("id", id);
         model.addAttribute("p360", ripperService.rip(id, QualityType.P360));
@@ -85,4 +88,5 @@ public class RootController {
         String header = request.getHeader("X-FORWARDED-FOR");
         return header == null || "".equals(header) ? request.getRemoteAddr() : header;
     }
+
 }

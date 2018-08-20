@@ -14,4 +14,5 @@ public class Properties {
     public int getDelayTime() {
         return delayTime;
     }
+
 }

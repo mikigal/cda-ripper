@@ -12,6 +12,7 @@ import pl.mikigal.cda.type.QualityType;
 public class RipperService {
 
     private static final String CDA_URL = "https://www.cda.pl/video/";
+
     private final WebClient webClient;
 
     public RipperService() {
@@ -33,7 +34,7 @@ public class RipperService {
         try {
             HtmlPage page = webClient.getPage(CDA_URL + id + "?wersja=" + qualityType.getName());
 
-            String url = getPlayerObject(page, id)
+            String url = getMediaPlayerObject(page, id)
                     .getLastElementChild()
                     .getAttribute("value")
                     .split("file=")[1]
@@ -48,9 +49,9 @@ public class RipperService {
         }
     }
 
-    private DomElement getPlayerObject(HtmlPage page, String id) {
-        DomElement base = page.getElementById("mediaplayer" + id);
-        return base == null ? page.getElementById("mediaplayer" + id.substring(0, id.length() - 2)) : base;
+    private DomElement getMediaPlayerObject(HtmlPage page, String id) {
+        DomElement base = page.getElementById("mediauser" + id);
+        return base == null ? page.getElementById("mediauser" + id.substring(0, id.length() - 2)) : base;
     }
 
 }
