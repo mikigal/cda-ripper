@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>pl.mikigal</groupId>
-    <artifactId>Bank</artifactId>
+    <artifactId>cda</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -90,4 +90,5 @@
             <version>2.32</version>
         </dependency>
     </dependencies>
+
 </project>
