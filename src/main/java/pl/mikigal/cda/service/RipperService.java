@@ -34,7 +34,7 @@ public class RipperService {
         try {
             HtmlPage page = webClient.getPage(CDA_URL + id + "?wersja=" + qualityType.getName());
 
-            String url = getUser(page, id)
+            String url = getMediaPlayerObject(page, id)
                     .getLastElementChild()
                     .getAttribute("value")
                     .split("file=")[1]
@@ -49,7 +49,7 @@ public class RipperService {
         }
     }
 
-    private DomElement getUser(HtmlPage page, String id) {
+    private DomElement getMediaPlayerObject(HtmlPage page, String id) {
         DomElement base = page.getElementById("mediauser" + id);
         return base == null ? page.getElementById("mediauser" + id.substring(0, id.length() - 2)) : base;
     }
