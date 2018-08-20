@@ -22,6 +22,7 @@ import pl.mikigal.cda.type.QualityType;
 public class RootController {
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private static final Base64.Decoder DECODER = Base64.getDecoder();
 
     private final Properties properties;
     private final RipperService ripperService;
@@ -40,15 +41,15 @@ public class RootController {
 
     @GetMapping("/{encodedUrl:.*}")
     public String video(Model model, HttpServletRequest request, @PathVariable String encodedUrl) {
-
         String url;
+
         try {
-            url = new String(Base64.getDecoder().decode(encodedUrl));
+            url = new String(DECODER.decode(encodedUrl));
         } catch (Exception e) {
             return "redirect:/?error=1";
         }
 
-        if(!url.contains("cda.pl$2F")) {
+        if (!url.contains("cda.pl$2F")) {
             return "redirect:/?error=1";
         }
 
@@ -64,7 +65,7 @@ public class RootController {
         DownloadEntity last = downloadRepo.findFirstByIpOrderByDateDesc(fetchIp(request));
 
         try {
-            if(last != null && SDF.parse(last.getDate()).getTime() + (properties.getDelayTime() * 1000) > new Date().getTime()) {
+            if (last != null && SDF.parse(last.getDate()).getTime() + (properties.getDelayTime() * 1000) > new Date().getTime()) {
                 return "redirect:/?error=2";
             }
         } catch (ParseException e) {
