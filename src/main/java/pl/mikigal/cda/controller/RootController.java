@@ -41,7 +41,7 @@ public class RootController {
     @GetMapping("/{encodedUrl:.*}")
     public String video(Model model, HttpServletRequest request, @PathVariable String encodedUrl) {
 
-        String url = null;
+        String url;
         try {
             url = new String(Base64.getDecoder().decode(encodedUrl));
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class RootController {
             return "redirect:/?error=1";
         }
 
-        String id = null;
+        String id;
 
         try {
             String[] ss = url.split("\\$2F");
