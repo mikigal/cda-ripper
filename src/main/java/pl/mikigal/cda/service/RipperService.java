@@ -50,8 +50,8 @@ public class RipperService {
     }
 
     private DomElement getMediaPlayerObject(HtmlPage page, String id) {
-        DomElement base = page.getElementById("mediauser" + id);
-        return base == null ? page.getElementById("mediauser" + id.substring(0, id.length() - 2)) : base;
+        DomElement base = page.getElementById("mediaplayer" + id);
+        return base == null ? page.getElementById("mediaplayer" + id.substring(0, id.length() - 2)) : base;
     }
 
 }
